@@ -18,8 +18,6 @@ def query():
     query = request.json["query"]
     
     return sqlQuery(query)
-    return jsonify({"columns": ("column1","column2","column3"), "rows": ["row1","row2","row3"]})
-    return query
 
 
 # functions
@@ -45,8 +43,11 @@ def sqlQuery(query):
 @api.route("/testquery", methods=["GET","post"])
 def testquery():
     print("/testquery")
-    # Get the query from the request body
-    query = request.json["query"]
+    if request.method == "post":
+        # Get the query from the request body
+        query = request.json["query"]
+    else:
+        query = "SELECT * FROM sqlite_master WHERE type='view' or type='table'"
     
     print("sqlQuery")
     # Connect to the database and execute the query

@@ -21,26 +21,27 @@
         <h2 class="page__section-title section-title">Helpful queries:</h2>
         <table class="page__helpful-table helpful-table">
             <tbody>
-                <tr>
+                <tr v-for="tip in helpfullQuerys">
                     <!-- Query to get all tables in the database -->
-                    <th class="helpful-table__query-description query-description">Get all tables</th>
-                    <th class="helpful-table__query-code query-code">SELECT name FROM sqlite_master WHERE type='table'
-                    </th>
-                </tr>
-                <tr>
-                    <!-- Query to get all tables in the database -->
-                    <th class="helpful-table__query-description query-description">Get all tables</th>
-                    <th class="helpful-table__query-code query-code">SELECT name FROM sqlite_master WHERE type='table'
-                    </th>
+                    <th class="helpful-table__query-description query-description">[[tip.title]]</th>
+                    <th class="helpful-table__query-code query-code">[[tip.query]]</th>
                 </tr>
             </tbody>
         </table>
         
-        <div class="section-title" v-if="DB_table"> Available tabels in the database</div>
+        <div class="section-title" v-if="DB_table"> Available tabels</div>
         <div class="app__table-list table-list">
 
             <div class="table-list__tables" v-for="table in DB_table">
                 [[ table ]]
+            </div>
+        </div>
+
+        <div class="section-title" v-if="DB_views"> Available views</div>
+        <div class="app__table-list table-list">
+
+            <div class="table-list__tables" v-for="view in DB_views">
+                [[ view ]]
             </div>
         </div>
         <div class="app__table-list table-list">
@@ -67,7 +68,7 @@
                 </select>
 
                 <!-- Button to execute the query -->
-                <button type="button" @click="testFunction" class="query-input__run-button run-button">Run</button>
+                <button type="button" @click="postQuery" class="query-input__run-button run-button">Run</button>
             </div>
         </form>
 
