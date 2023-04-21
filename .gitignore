@@ -1,3 +1,12 @@
+# NODE
+node_modules
+
+# DATABASE FILES
+*.sqlite3
+*.sqlite
+*.db
+*.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
