@@ -99,7 +99,7 @@ const app = Vue.createApp({
 
             try {
                 // Make a POST request to the server to execute the SQL query
-                const response = await fetch("/testquery", {
+                const response = await fetch("/query", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ query: DB_query }),

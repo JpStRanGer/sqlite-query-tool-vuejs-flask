@@ -28,7 +28,7 @@
                 </tr>
             </tbody>
         </table>
-        
+
         <div class="section-title" v-if="DB_table"> Available tabels</div>
         <div class="app__table-list table-list">
 
@@ -46,7 +46,10 @@
         </div>
         <div class="app__table-list table-list">
             <div class="table-list__selected-table selected-table">
-                [[ selectedTable ]]
+                Selected Table:
+                <span v-if="selectedTable != ''">
+                    [[ selectedTable ]]
+                </span>
             </div>
         </div>
 
@@ -62,6 +65,9 @@
                 <!-- Dropdown menu to select a table from the database -->
                 <select v-model="selectedTable" @change="getTableData"
                     class="query-input__table-dropdown table-dropdown">
+                    <option v-for="view in DB_views" :value="view" class="table-dropdown__option table-option">
+                        [[view]]
+                    </option>
                     <option v-for="table in DB_table" :value="table" class="table-dropdown__option table-option">
                         [[table]]
                     </option>
