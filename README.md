@@ -1,7 +1,7 @@
 # sqlite-query-tool-vuejs-flask
 VueJS and Flask-powered tool for database analysis. Allows users to select tables from SQLite database, execute queries, and display results in a table format. Includes pre-written queries and displays all available tables. Uses custom delimiters and asynchronous method for fast retrieval of table names.
 
-### Project Description: 
+## Project Description: 
 A web-based SQLite query tool created using Vue.js and Flask that allows users to select tables from a database, execute SQL queries, and display the results in a table format. It includes helpful pre-written queries and displays all available tables in the selected database. The tool uses custom delimiters and an asynchronous method to retrieve table/view names from the SQLite database.
 
 ## Table of Contents
@@ -16,6 +16,10 @@ A web-based SQLite query tool created using Vue.js and Flask that allows users t
 ## Introduction
 
 A brief introduction to the project and its purpose.
+
+## DOCUMENTATION
+The database structure is documentated using drawSQL.app
+https://drawsql.app/teams/testteam-28/diagrams/veastagendringer
 
 ## Features
 
