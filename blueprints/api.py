@@ -3,81 +3,102 @@ import sqlite3
 
 
 # Define a new Blueprint
-api = Blueprint("example", __name__)
+api = Blueprint("api", __name__)
 
+#########################
+# LIST TAGS
+@api.get("/api/tags")
+def list_tags():
+    return
 
-##################################
-# DEMO FOR TESTING BL (Blueprints)
-@api.route("/bl")
-def index():
-    print(f"request.method: {request.method}")
-    print(f"request.data: {request.data}")
-    print(f"request.args: {request.args}")
-    return "Hello, World! From your Blueprint!"
+#########################
+# LIST TODOS
+@api.get("/api/todos")
+def list_todos():
 
-
-##################################
-# Select all colloums from User
-@api.route("/query", methods=["GET","post"])
-def query():
-    print()
-    print("query()")
-    # Get the query from the request body
-    query = request.json["query"]
-    
-    return sqlQuery(query)
-
-
-###########################
-# functions
-def sqlQuery(query):
-    print("sqlQuery(query)")
-    print(f"request.method: {request.method}")
-    print(f"request.args(GET): {request.args}")
-    print(f"request.data(POST): {request.data}")
-    print()
     # Connect to the database and execute the query
-    # conn = sqlite3.connect("test.db")
     conn = sqlite3.connect("veasTagEndringer.sqlite3")
-    cursor = conn.cursor()
-    cursor.execute(query)
+
+    cursor_count_total = conn.cursor()
+    cursor_count_total.execute("SELECT count(Todo_ID) FROM todos")
+    count_total = cursor_count_total.fetchone()[0]
+
+    cursor_count_filtered = conn.cursor()
+    cursor_count_filtered.execute("SELECT count(Todo_ID) FROM todos WHERE TodoName = 'merit'")
+    count_filtered = cursor_count_filtered.fetchone()[0]
+
+    cursor_data = conn.cursor()
+    cursor_data.execute("SELECT * FROM todos WHERE TodoName = 'merit' LIMIT 1")
 
     # Get the column names and rows from the query results
-    columns = [column[0] for column in cursor.description]
-    rows = [row for row in cursor.fetchall()]
+    columns = [column[0] for column in cursor_data.description]
+    # rows = [row for row in cursor.fetchall()]
+    rows = [dict(zip(columns,row)) for row in cursor_data.fetchall()]
 
     # Close the database connection
     conn.close()
 
-    # Return the query results as JSON
-    return jsonify({"columns": columns, "rows": rows})
+    return {
+        "meta": {
+            "count_total": count_total,
+            "count_filtered": count_filtered
+        },
+        "data": rows
+    }
+
+#########################
+# GET TAG BY ID
+@api.get("/api/tags/<id>")
+def get_tag_by_id(id):
+    print(f"id: {id}")
+    return f"return id{id}"
+
+#########################
+# GET TODO BY ID
+@api.get("/api/todos/<id>")
+def get_todo_by_id(id):
+    print(f"id: {id}")
+    return f"return id{id}"
+
+#########################
+# CREATE TAG
+@api.post("/api/tags")
+def create_tag():
+    return
+
+#########################
+# CREATE TODO
+@api.post("/api/todos")
+def create_todos():
+    return
+
+#########################
+# UPDATE TAG
+@api.patch("/api/tags/<id>")
+def update_tag(id):
+    print(f"id: {id}")
+    return f"return id{id}"
+
+#########################
+# UPDATE TODO
+@api.patch("/api/todos/<id>")
+def update_todo(id):
+    print(f"id: {id}")
+    return f"return id{id}"
+
+#########################
+# DELETE TAG
+@api.delete("/api/tags/<id>")
+def delete_tag(id):
+    print(f"id: {id}")
+    return f"return id{id}"
+
+#########################
+# DELETE TODO
+@api.delete("/api/todos/<id>")
+def delete_todo(id):
+    print(f"id: {id}")
+    return f"return id{id}"
 
 
-################################
-# Select all colloums from User
-@api.route("/testquery", methods=["GET","post"])
-def testquery():
-    print("/testquery")
-    if request.method == "get" or request.method == "post":
-        # Get the query from the request body
-        query = request.json["query"]
-    else:
-        query = "SELECT * FROM sqlite_master WHERE type='view' or type='table'"
-    
-    print("sqlQuery")
-    # Connect to the database and execute the query
-    # conn = sqlite3.connect("test.db")
-    conn = sqlite3.connect("veasTagEndringer.sqlite3")
-    cursor = conn.cursor()
-    cursor.execute(query)
-
-    # Get the column names and rows from the query results
-    columns = [column[0] for column in cursor.description]
-    rows = [row for row in cursor.fetchall()]
-
-    # Close the database connection
-    conn.close()
-
-    # Return the query results as JSON
-    return jsonify({"columns": columns, "rows": rows})
 

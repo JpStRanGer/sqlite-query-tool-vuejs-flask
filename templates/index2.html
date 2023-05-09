@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>SQLite Query Tool</title>
+
+    <!-- Import Vue.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <!-- Import custom stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Veas Tagendrings database</h1>
+    </header>
+
+    <!-- DESCRIPTION -->
+    <section class="Section">
+        <h2 class="Section__title">Description</h2>
+        <div class="Section__container">
+            Section__container
+        </div>
+    </section>
+    
+    <!-- HELPFUL QUERYS -->
+    <section class="Section">
+        <h2 class="Section__title">Helpful Querys</h2>
+        <div class="Section__container">
+            Section__container
+        </div>
+    </section>
+    
+    <!-- GENEREL QUERY INPUT -->
+    <section class="Section">
+        <h2 class="Section__title">Generel Query Input</h2>
+        <div class="Section__container">
+            <div class="generel-input">
+                <label for="generel-input__input">Generel Query Input</label>
+                <input id="generel-input__input" type="text">
+                <button type="submit" form="form1" value="Submit">run</button>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- DATABASE CONTENT -->
+    </section>
+    <section class="Section">
+        <h2 class="Section__title">Database Content</h2>
+        <div class="Section__container">
+            <div class="card__container">
+                <div class="card">
+                    <h3 class="card__title">Available Tables</h3>
+                    <p>table name</p>
+                    <p>table name</p>
+                    <p>table name</p>
+                </div>
+                <div class="card">
+                    <h3 class="card__title">Available Views</h3>
+                    <p>view name</p>
+                    <p>view name</p>
+                    <p>view name</p>
+                    <p>view name</p>
+                </div>
+                <div class="card">
+                    <h3 class="card__title">Available Todos</h3>
+                    <p>merit</p>
+                    <p>edge Insight</p>
+                    <p>HSRG</p>
+                </div>
+                <div class="card">
+                    card
+                </div>
+                <div class="card">
+                    card
+                </div>
+                <div class="card">
+                    card
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        Footer text!
+    </footer>
+    <!-- Import custom JavaScript file -->
+    <script src="{{ url_for('static', filename='app2.js') }}"></script>
+</body>

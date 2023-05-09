@@ -1,0 +1,72 @@
+// COLORS
+// Primary
+$Color-pri-100: rgb(51, 55, 58);
+$Color-pri-300: rgb(53, 86, 110);
+$Color-pri-500: rgb(78, 138, 180);
+$Color-pri-700: rgb(152, 189, 218);
+$Color-pri-900: rgb(220, 236, 248);
+
+// box-shadow
+$card-shadow: 0 0 15px rgba(black,.5);
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    // background-color: rgba($Color-pri-700,.3);
+    // outline: dotted rgba(black,.3);
+}
+
+body{
+    min-height: 100vh;
+    font-size: 16px;
+    background-color: $Color-pri-900;
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    background-color: $Color-pri-100;
+    color: $Color-pri-900;
+    margin: 0;
+    padding: 1.5rem;
+}
+
+footer{
+    margin: 1rem;
+}
+
+// Section
+.Section{
+    margin: 1rem auto 0 auto;
+    max-width: 80lvw;
+    width: 80lvw;
+    border-radius: 9px;
+    box-shadow: $card-shadow;
+    &__title{
+        padding: 1rem;
+    }
+}
+
+// GENEREL INPUT
+.generel-input{
+    
+}
+
+// CARD
+.card{
+    &__container{
+        margin: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+    background-color: $Color-pri-500;
+    color: $Color-pri-900;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: $card-shadow;
+    min-width: 10rem;
+    flex-grow: 1;
+}
